@@ -148,7 +148,7 @@ export default function BookingsPage() {
   const tableData = filteredBookings.map((b) => ({
     date: format(new Date(b.date), 'MMM dd, yyyy'),
     customer: b.customer_name,
-    space: (b.spaces as any)?.name || 'Unknown',
+    space: b.spaces?.name || 'Unknown',
     time: `${b.start_hour}:00 - ${b.end_hour}:00`,
     amount: `$${b.total_amount}`,
     status: b.status,
@@ -286,7 +286,7 @@ export default function BookingsPage() {
                 <div>
                   <p className="text-sm font-medium text-gray-600">Space</p>
                   <p className="text-lg font-semibold">
-                    {(selectedBooking.spaces as any)?.name}
+                    {selectedBooking.spaces?.name}
                   </p>
                 </div>
                 <div>
@@ -361,3 +361,4 @@ export default function BookingsPage() {
     </div>
   );
 }
+                  
