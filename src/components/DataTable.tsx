@@ -9,49 +9,55 @@ export default function DataTable({
 }) {
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <div className="flex items-center justify-center py-12">
+        <div className="h-6 w-6 rounded-full border-2 border-slate-200 border-t-blue-600 animate-spin" />
       </div>
     );
   }
 
   if (data.length === 0) {
     return (
-      <div className="text-center py-8 text-gray-500">
-        <p>No data to display</p>
+      <div className="text-center py-12">
+        <p className="text-sm text-slate-400">No data to display</p>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto bg-white rounded-lg shadow-md">
+    <div className="overflow-x-auto">
       <table className="w-full">
         <thead>
-          <tr className="bg-gray-100 border-b">
+          <tr className="border-b border-slate-100">
             {columns.map((col) => (
               <th
                 key={col.key}
-                className="px-6 py-3 text-left text-sm font-semibold text-gray-700"
+                className="px-4 py-3 text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider"
               >
                 {col.label}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-slate-50">
           {data.map((row, idx) => (
-            <tr
-              key={idx}
-              className={`border-b transition-colors duration-150 ${
-                idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'
-              } hover:bg-blue-50`}
-            >
+            <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
               {columns.map((col) => (
                 <td
                   key={`${idx}-${col.key}`}
-                  className="px-6 py-4 text-sm text-gray-900"
+                  className="px-4 py-3.5 text-sm text-slate-700"
                 >
-                  {row[col.key] || '-'}
+                  {col.key === 'status' ? (
+                    <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium
+                      ${row[col.key] === 'confirmed' ? 'bg-emerald-50 text-emerald-700' :
+                        row[col.key] === 'pending' ? 'bg-amber-50 text-amber-700' :
+                        row[col.key] === 'cancelled' ? 'bg-red-50 text-red-700' :
+                        'bg-slate-100 text-slate-600'}`}
+                    >
+                      {row[col.key] || '-'}
+                    </span>
+                  ) : (
+                    row[col.key] || '-'
+                  )}
                 </td>
               ))}
             </tr>
