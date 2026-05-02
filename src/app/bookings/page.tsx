@@ -55,7 +55,7 @@ export default function BookingsPage() {
           .from('bookings')
           .select('id, space_id, date, start_hour, end_hour, customer_name, customer_email, customer_phone, total_amount, deposit_amount, status, payment_verified, spaces(name)')
           .order('date', { ascending: false });
-        setBookings(bookingsData || []);
+        setBookings((bookingsData as unknown as Booking[]) || []);
         setFilteredBookings(bookingsData || []);
       } catch (error) {
         console.error('Error fetching bookings:', error);

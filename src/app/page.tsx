@@ -52,7 +52,7 @@ export default function DashboardPage() {
           .select('id, space_id, date, start_hour, end_hour, customer_name, total_amount, status, spaces(name)')
           .eq('date', format(today, 'yyyy-MM-dd'))
           .order('start_hour');
-        setTodayBookings(todayData || []);
+        setTodayBookings((todayData as unknown as Booking[]) || []);
 
         // Fetch this week's bookings
         const weekStart = startOfWeek(today);
@@ -63,7 +63,7 @@ export default function DashboardPage() {
           .gte('date', format(weekStart, 'yyyy-MM-dd'))
           .lte('date', format(weekEnd, 'yyyy-MM-dd'))
           .order('date');
-        setWeekBookings(weekData || []);
+        setWeekBookings((weekData as unknown as Booking[]) || []);
 
         // Fetch month bookings for revenue
         const monthStart = startOfMonth(today);
@@ -74,7 +74,7 @@ export default function DashboardPage() {
           .gte('date', format(monthStart, 'yyyy-MM-dd'))
           .lte('date', format(monthEnd, 'yyyy-MM-dd'))
           .eq('status', 'confirmed');
-        setMonthBookings(monthData || []);
+        setMonthBookings((monthData as unknown as Booking[]) || []);
 
         // Calculate month revenue
         const revenue = (monthData || []).reduce((sum, b) => sum + (b.total_amount || 0), 0);

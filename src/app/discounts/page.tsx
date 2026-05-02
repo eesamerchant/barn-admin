@@ -62,7 +62,7 @@ export default function DiscountsPage() {
         .from('discount_codes')
         .select('id, code, type, value, min_booking_amount, max_uses, current_uses, space_id, is_active, expires_at, spaces(name)')
         .order('created_at', { ascending: false });
-      setDiscounts(discountsData || []);
+      setDiscounts((discountsData as unknown as DiscountCode[]) || []);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {

@@ -55,7 +55,7 @@ export default function PaymentsPage() {
         .eq('status', 'pending')
         .eq('payment_verified', false)
         .order('date');
-      setPendingBookings(bookingsData || []);
+      setPendingBookings((bookingsData as unknown as Booking[]) || []);
 
       // Fetch verifications
       const { data: verificationsData } = await supabase
