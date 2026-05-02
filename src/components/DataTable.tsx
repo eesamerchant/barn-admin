@@ -24,7 +24,7 @@ export default function DataTable({
   }
 
   return (
-    <div className="overflow-x-auto bg-white rounded-lg shadow">
+    <div className="overflow-x-auto bg-white rounded-lg shadow-md">
       <table className="w-full">
         <thead>
           <tr className="bg-gray-100 border-b">
@@ -42,7 +42,9 @@ export default function DataTable({
           {data.map((row, idx) => (
             <tr
               key={idx}
-              className="border-b hover:bg-gray-50 transition-colors"
+              className={`border-b transition-colors duration-150 ${
+                idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+              } hover:bg-blue-50`}
             >
               {columns.map((col) => (
                 <td

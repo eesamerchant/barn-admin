@@ -10,15 +10,15 @@ export default function StatsCard({
   color?: 'blue' | 'green' | 'orange' | 'red';
 }) {
   const colorClasses = {
-    blue: 'bg-blue-50 text-blue-600 border-blue-200',
-    green: 'bg-green-50 text-green-600 border-green-200',
-    orange: 'bg-orange-50 text-orange-600 border-orange-200',
-    red: 'bg-red-50 text-red-600 border-red-200',
+    blue: 'bg-blue-50 text-blue-600 border-l-4 border-l-blue-500',
+    green: 'bg-green-50 text-green-600 border-l-4 border-l-green-500',
+    orange: 'bg-orange-50 text-orange-600 border-l-4 border-l-orange-500',
+    red: 'bg-red-50 text-red-600 border-l-4 border-l-red-500',
   };
 
   return (
     <div
-      className={`${colorClasses[color]} border rounded-lg p-6 shadow-sm`}
+      className={`${colorClasses[color]} border border-gray-200 rounded-lg p-6 shadow-sm transition-all duration-200 hover:shadow-lg hover:scale-105`}
     >
       <div className="flex items-center justify-between">
         <div>
