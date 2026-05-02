@@ -55,7 +55,7 @@ export default function AddOnsPage() {
         .from('add_ons')
         .select('id, name, description, price, space_id, is_active, spaces(name)')
         .order('created_at', { ascending: false });
-      setAddOns(addOnsData || []);
+      setAddOns((addOnsData as unknown as AddOn[]) || []);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
