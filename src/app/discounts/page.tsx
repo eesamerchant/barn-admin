@@ -33,7 +33,7 @@ export default function DiscountsPage() {
 
   const [formData, setFormData] = useState({
     code: '',
-    type: 'percentage' as const,
+    type: 'percentage' as 'percentage' | 'fixed',
     value: '',
     min_booking_amount: '',
     max_uses: '',
@@ -75,7 +75,7 @@ export default function DiscountsPage() {
     setEditingId(discount.id);
     setFormData({
       code: discount.code,
-      type: discount.type,
+      type: discount.type as 'percentage' | 'fixed',
       value: discount.value.toString(),
       min_booking_amount: discount.min_booking_amount.toString(),
       max_uses: discount.max_uses?.toString() || '',
