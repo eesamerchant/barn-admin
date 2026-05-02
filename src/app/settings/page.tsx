@@ -81,7 +81,7 @@ export default function SettingsPage() {
         ...prev,
         event_space_name: settingsObj.event_space_name || '',
         court_name: settingsObj.court_name || '',
-        deposit_percentage: settingsObj.deposit_percentage || 50,
+        deposit_percentage: settingsObj.deposit_percentage?.deposit_percentage || settingsObj.deposit_percentage || 50,
         business_hours_start: settingsObj.business_hours_start || 8,
         business_hours_end: settingsObj.business_hours_end || 22,
         booking_advance_days: settingsObj.booking_advance_days || 90,
@@ -140,7 +140,7 @@ export default function SettingsPage() {
       const settingsToUpdate = [
         { key: 'event_space_name', value: formData.event_space_name },
         { key: 'court_name', value: formData.court_name },
-        { key: 'deposit_percentage', value: formData.deposit_percentage },
+        { key: 'deposit_percentage', value: { deposit_percentage: formData.deposit_percentage } },
         { key: 'business_hours_start', value: formData.business_hours_start },
         { key: 'business_hours_end', value: formData.business_hours_end },
         { key: 'booking_advance_days', value: formData.booking_advance_days },
