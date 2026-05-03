@@ -185,7 +185,7 @@ export default function DiscountsPage() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-slate-900 mb-8">Discount Codes</h1>
+      <h1 className="text-4xl font-bold text-white mb-8">Discount Codes</h1>
 
       <button
         onClick={handleCreate}
@@ -194,8 +194,8 @@ export default function DiscountsPage() {
         + New Discount Code
       </button>
 
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-xl font-bold text-slate-900 mb-4">All Discount Codes</h2>
+      <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+        <h2 className="text-xl font-bold text-white mb-4">All Discount Codes</h2>
         <DataTable
           columns={[
             { key: 'code', label: 'Code' },
@@ -207,22 +207,22 @@ export default function DiscountsPage() {
             { key: 'expires', label: 'Expires' },
           ]}
           data={tableData}
-          loading={loading}
+         
         />
       </div>
 
       {showForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b sticky top-0 bg-white">
-              <h2 className="text-2xl font-bold text-slate-900">
+          <div className="bg-[#12121a] rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b sticky top-0 bg-[#12121a]">
+              <h2 className="text-2xl font-bold text-white">
                 {formMode === 'edit' ? 'Edit Discount Code' : 'Create New Discount Code'}
               </h2>
             </div>
 
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Code
                 </label>
                 <input
@@ -232,14 +232,14 @@ export default function DiscountsPage() {
                     setFormData({ ...formData, code: e.target.value })
                   }
                   placeholder="e.g., SAVE20"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 uppercase"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 uppercase"
                   required
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                     Type
                   </label>
                   <select
@@ -250,7 +250,7 @@ export default function DiscountsPage() {
                         type: e.target.value as 'percentage' | 'fixed',
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="percentage">Percentage</option>
                     <option value="fixed">Fixed Amount</option>
@@ -258,7 +258,7 @@ export default function DiscountsPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                     Value
                   </label>
                   <input
@@ -268,14 +268,14 @@ export default function DiscountsPage() {
                     onChange={(e) =>
                       setFormData({ ...formData, value: e.target.value })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Minimum Booking Amount
                 </label>
                 <input
@@ -285,12 +285,12 @@ export default function DiscountsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, min_booking_amount: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Max Uses (leave empty for unlimited)
                 </label>
                 <input
@@ -299,12 +299,12 @@ export default function DiscountsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, max_uses: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Available For
                 </label>
                 <select
@@ -312,7 +312,7 @@ export default function DiscountsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, space_id: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="all">Both Spaces</option>
                   {spaces.map((space) => (
@@ -324,7 +324,7 @@ export default function DiscountsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Expires At (optional)
                 </label>
                 <input
@@ -333,7 +333,7 @@ export default function DiscountsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, expires_at: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -349,7 +349,7 @@ export default function DiscountsPage() {
                 />
                 <label
                   htmlFor="isActive"
-                  className="ml-2 text-sm font-medium text-gray-700"
+                  className="ml-2 text-sm font-medium text-[#e4e4ed]"
                 >
                   Active
                 </label>
@@ -359,7 +359,7 @@ export default function DiscountsPage() {
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-900 font-medium rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-white font-medium rounded-lg transition-colors"
                 >
                   Cancel
                 </button>

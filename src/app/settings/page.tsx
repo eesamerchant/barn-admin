@@ -196,15 +196,15 @@ export default function SettingsPage() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-slate-900 mb-8">Settings</h1>
+      <h1 className="text-4xl font-bold text-white mb-8">Settings</h1>
 
       <form onSubmit={handleSave} className="space-y-8">
         {/* Space Names */}
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6">Space Names</h2>
+        <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold text-white mb-6">Space Names</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 Event Space Name
               </label>
               <input
@@ -213,11 +213,11 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   handleSettingChange('event_space_name', e.target.value)
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 Basketball Court Name
               </label>
               <input
@@ -226,24 +226,24 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   handleSettingChange('court_name', e.target.value)
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
         </div>
 
         {/* Space Rates and Hours */}
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6">Space Rates & Hours</h2>
+        <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold text-white mb-6">Space Rates & Hours</h2>
           <div className="space-y-6">
             {spaces.map((space) => (
               <div key={space.id} className="border-t pt-6 first:border-t-0 first:pt-0">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">
+                <h3 className="text-lg font-semibold text-white mb-4">
                   {space.name}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                       Hourly Rate ($)
                     </label>
                     <input
@@ -257,11 +257,11 @@ export default function SettingsPage() {
                           e.target.value
                         )
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                       Min Booking Hours
                     </label>
                     <input
@@ -275,11 +275,11 @@ export default function SettingsPage() {
                           e.target.value
                         )
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                       Max Booking Hours
                     </label>
                     <input
@@ -293,7 +293,7 @@ export default function SettingsPage() {
                           e.target.value
                         )
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -303,11 +303,11 @@ export default function SettingsPage() {
         </div>
 
         {/* Business Settings */}
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6">Business Settings</h2>
+        <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold text-white mb-6">Business Settings</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 Deposit Percentage (%)
               </label>
               <input
@@ -318,11 +318,11 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   handleSettingChange('deposit_percentage', parseInt(e.target.value))
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 Business Hours Start (Hour)
               </label>
               <input
@@ -333,11 +333,11 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   handleSettingChange('business_hours_start', parseInt(e.target.value))
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 Business Hours End (Hour)
               </label>
               <input
@@ -348,11 +348,11 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   handleSettingChange('business_hours_end', parseInt(e.target.value))
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 Booking Advance Days
               </label>
               <input
@@ -362,11 +362,11 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   handleSettingChange('booking_advance_days', parseInt(e.target.value))
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 Cancellation Hours
               </label>
               <input
@@ -376,20 +376,20 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   handleSettingChange('cancellation_hours', parseInt(e.target.value))
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
         </div>
 
         {/* IMAP Configuration */}
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6">
+        <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold text-white mb-6">
             E-Transfer Verification (IMAP Config)
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 Email Address
               </label>
               <input
@@ -399,11 +399,11 @@ export default function SettingsPage() {
                   handleSettingChange('imap_email', e.target.value)
                 }
                 placeholder="admin@example.com"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 IMAP Host
               </label>
               <input
@@ -412,11 +412,11 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   handleSettingChange('imap_host', e.target.value)
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 IMAP Port
               </label>
               <input
@@ -425,11 +425,11 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   handleSettingChange('imap_port', parseInt(e.target.value))
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                 App Password
               </label>
               <input
@@ -439,11 +439,11 @@ export default function SettingsPage() {
                   handleSettingChange('imap_app_password', e.target.value)
                 }
                 placeholder="Enter Gmail app password"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="flex items-end">
-              <label className="flex items-center text-sm font-medium text-gray-700">
+              <label className="flex items-center text-sm font-medium text-[#e4e4ed]">
                 <input
                   type="checkbox"
                   checked={formData.imap_use_ssl}

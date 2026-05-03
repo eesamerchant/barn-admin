@@ -78,26 +78,40 @@ export default function DashboardPage() {
     return `${display}:00 ${suffix}`;
   };
 
+  const statusBadge = (status: string) => {
+    const colors: Record<string, string> = {
+      confirmed: 'bg-emerald-500/10 text-emerald-400',
+      pending: 'bg-amber-500/10 text-amber-400',
+      cancelled: 'bg-red-500/10 text-red-400',
+      completed: 'bg-blue-500/10 text-blue-400',
+    };
+    return (
+      <span className={`inline-flex px-2.5 py-0.5 rounded-lg text-[11px] font-semibold ${colors[status] || 'bg-[#1a1a25] text-[#6b6b80]'}`}>
+        {status}
+      </span>
+    );
+  };
+
   return (
     <div style={{ animation: 'fadeIn 0.3s ease-out' }}>
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-        <p className="text-sm text-slate-400 mt-1">{format(new Date(), 'EEEE, MMMM d, yyyy')}</p>
+        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+        <p className="text-sm text-[#6b6b80] mt-1">{format(new Date(), 'EEEE, MMMM d, yyyy')}</p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatsCard title="Today" value={todayBookings.length} icon="📅" color="blue" />
-        <StatsCard title="This Month" value={monthBookings.length} icon="📊" color="green" />
-        <StatsCard title="Revenue" value={`$${totalRevenue.toFixed(2)}`} icon="💰" color="green" />
-        <StatsCard title="Pending" value={pendingPayments} icon="⏳" color={pendingPayments > 0 ? 'orange' : 'blue'} />
+        <StatsCard title="Today" value={todayBookings.length} subtitle="bookings" color="blue" />
+        <StatsCard title="This Month" value={monthBookings.length} subtitle="confirmed" color="green" />
+        <StatsCard title="Revenue" value={`$${totalRevenue.toFixed(0)}`} subtitle="this month" color="amber" />
+        <StatsCard title="Pending" value={pendingPayments} subtitle="awaiting payment" color={pendingPayments > 0 ? 'red' : 'green'} />
       </div>
 
       {/* Today's Bookings */}
-      <div className="bg-white rounded-xl border border-slate-200/80 overflow-hidden mb-6">
-        <div className="px-5 py-4 border-b border-slate-100">
-          <h2 className="text-sm font-semibold text-slate-900">Today&apos;s Bookings</h2>
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-semibold text-white">Today&apos;s Bookings</h2>
         </div>
         <DataTable
           columns={[
@@ -105,23 +119,23 @@ export default function DashboardPage() {
             { key: 'space', label: 'Space' },
             { key: 'time', label: 'Time' },
             { key: 'amount', label: 'Amount' },
-            { key: 'status', label: 'Status' },
+            { key: 'status', label: 'Status', render: (val: string) => statusBadge(val) },
           ]}
           data={todayBookings.map((b) => ({
             name: b.customer_name,
-            space: (b.spaces as any)?.name || 'Unknown',
+            space: (b.spaces as unknown as { name: string })?.name || 'Unknown',
             time: `${formatTime(b.start_hour)} – ${formatTime(b.end_hour)}`,
             amount: `$${b.total_amount}`,
             status: b.status,
           }))}
-          loading={loading}
+          emptyMessage="No bookings today"
         />
       </div>
 
       {/* This Week */}
-      <div className="bg-white rounded-xl border border-slate-200/80 overflow-hidden">
-        <div className="px-5 py-4 border-b border-slate-100">
-          <h2 className="text-sm font-semibold text-slate-900">This Week</h2>
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-semibold text-white">This Week</h2>
         </div>
         <DataTable
           columns={[
@@ -129,16 +143,16 @@ export default function DashboardPage() {
             { key: 'name', label: 'Customer' },
             { key: 'space', label: 'Space' },
             { key: 'time', label: 'Time' },
-            { key: 'status', label: 'Status' },
+            { key: 'status', label: 'Status', render: (val: string) => statusBadge(val) },
           ]}
           data={weekBookings.map((b) => ({
-            date: format(new Date(b.date), 'MMM dd'),
+            date: format(new Date(b.date + 'T12:00:00'), 'EEE, MMM d'),
             name: b.customer_name,
-            space: (b.spaces as any)?.name || 'Unknown',
+            space: (b.spaces as unknown as { name: string })?.name || 'Unknown',
             time: `${formatTime(b.start_hour)} – ${formatTime(b.end_hour)}`,
             status: b.status,
           }))}
-          loading={loading}
+          emptyMessage="No bookings this week"
         />
       </div>
     </div>

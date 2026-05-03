@@ -1,37 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg: #f1f5f9;
-  --color-primary: #0f172a;
+  --color-bg: #0a0a0f;
+  --color-surface: #12121a;
+  --color-card: #1a1a25;
+  --color-border: #2a2a3a;
   --color-accent: #3b82f6;
+  --color-text: #e4e4ed;
+  --color-muted: #6b6b80;
   --color-success: #22c55e;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-primary);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+::selection { background: var(--color-accent); color: white; }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a4a; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

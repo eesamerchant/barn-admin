@@ -184,29 +184,29 @@ export default function AvailabilityPage() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-slate-900 mb-8">Availability Management</h1>
+      <h1 className="text-4xl font-bold text-white mb-8">Availability Management</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Set Availability Form */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-            <h2 className="text-xl font-bold text-slate-900 mb-4">Set Availability</h2>
+          <div className="bg-[#12121a] rounded-lg shadow-lg p-6 mb-8">
+            <h2 className="text-xl font-bold text-white mb-4">Set Availability</h2>
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Date
                 </label>
                 <input
                   type="date"
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Start Hour (0-23)
                 </label>
                 <input
@@ -215,12 +215,12 @@ export default function AvailabilityPage() {
                   max="23"
                   value={startHour}
                   onChange={(e) => setStartHour(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   End Hour (0-23)
                 </label>
                 <input
@@ -229,7 +229,7 @@ export default function AvailabilityPage() {
                   max="23"
                   value={endHour}
                   onChange={(e) => setEndHour(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -243,21 +243,21 @@ export default function AvailabilityPage() {
                 />
                 <label
                   htmlFor="isAvailable"
-                  className="ml-2 text-sm font-medium text-gray-700"
+                  className="ml-2 text-sm font-medium text-[#e4e4ed]"
                 >
                   Available
                 </label>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Note (Optional)
                 </label>
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="e.g., Maintenance scheduled"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   rows={3}
                 />
               </div>
@@ -273,11 +273,11 @@ export default function AvailabilityPage() {
           </div>
 
           {/* Bulk Set Form */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-bold text-slate-900 mb-4">Bulk Set</h2>
+          <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-bold text-white mb-4">Bulk Set</h2>
             <form onSubmit={handleBulkSet} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Days from Today
                 </label>
                 <input
@@ -286,12 +286,12 @@ export default function AvailabilityPage() {
                   max="365"
                   value={bulkDays}
                   onChange={(e) => setBulkDays(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Start Hour
                 </label>
                 <input
@@ -300,12 +300,12 @@ export default function AvailabilityPage() {
                   max="23"
                   value={bulkStartHour}
                   onChange={(e) => setBulkStartHour(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   End Hour
                 </label>
                 <input
@@ -314,7 +314,7 @@ export default function AvailabilityPage() {
                   max="23"
                   value={bulkEndHour}
                   onChange={(e) => setBulkEndHour(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -331,8 +331,8 @@ export default function AvailabilityPage() {
 
         {/* Availability List */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-bold text-slate-900 mb-4">
+          <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-bold text-white mb-4">
               All Availability Records
             </h2>
             {loading ? (
@@ -340,7 +340,7 @@ export default function AvailabilityPage() {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
               </div>
             ) : availabilities.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">No availability records</p>
+              <p className="text-[#6b6b80] text-center py-8">No availability records</p>
             ) : (
               <div className="space-y-2 max-h-[600px] overflow-y-auto">
                 {availabilities.map((record) => (
@@ -349,7 +349,7 @@ export default function AvailabilityPage() {
                     className={`p-4 border rounded-lg cursor-pointer transition-colors ${
                       selectedRecord?.id === record.id
                         ? 'bg-blue-50 border-blue-300'
-                        : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                        : 'bg-[#0a0a0f] border-[#2a2a3a] hover:bg-[#12121a]'
                     }`}
                   >
                     <div
@@ -357,14 +357,14 @@ export default function AvailabilityPage() {
                       className="flex justify-between items-start mb-2"
                     >
                       <div>
-                        <p className="font-semibold text-slate-900">
+                        <p className="font-semibold text-white">
                           {format(new Date(record.date), 'EEE, MMM dd, yyyy')}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-[#6b6b80]">
                           {record.start_hour}:00 - {record.end_hour}:00
                         </p>
                         {record.note && (
-                          <p className="text-sm text-gray-500 mt-1">{record.note}</p>
+                          <p className="text-sm text-[#6b6b80] mt-1">{record.note}</p>
                         )}
                       </div>
                       <div className="flex items-center gap-2">

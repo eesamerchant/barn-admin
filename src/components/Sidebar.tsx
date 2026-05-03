@@ -40,27 +40,24 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="w-60 bg-slate-900 text-white flex flex-col h-screen sticky top-0">
+    <aside className="w-60 bg-[#12121a] border-r border-[#2a2a3a]/50 text-white flex flex-col h-screen sticky top-0">
       {/* Brand */}
       <div className="px-5 py-5 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-600/30">
+        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/20">
           BA
         </div>
         <div className="leading-tight">
           <p className="font-semibold text-sm text-white">Barn Admin</p>
-          <p className="text-[11px] text-slate-400">Management Panel</p>
+          <p className="text-[11px] text-[#6b6b80]">Management Panel</p>
         </div>
       </div>
 
-      {/* Divider */}
-      <div className="mx-4 border-t border-slate-700/60" />
+      <div className="mx-4 border-t border-[#2a2a3a]/60" />
 
-      {/* Navigation label */}
       <div className="px-5 pt-5 pb-2">
-        <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">Navigation</p>
+        <p className="text-[10px] font-semibold text-[#4a4a5a] uppercase tracking-widest">Navigation</p>
       </div>
 
-      {/* Nav links */}
       <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
@@ -71,7 +68,7 @@ export default function Sidebar() {
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150
                 ${isActive
                   ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  : 'text-[#6b6b80] hover:text-white hover:bg-[#1a1a25]'
                 }
               `}
             >
@@ -82,12 +79,11 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* Logout */}
-      <div className="p-3 border-t border-slate-700/60">
+      <div className="p-3 border-t border-[#2a2a3a]/60">
         <button
           onClick={handleLogout}
           disabled={loggingOut}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-red-400 hover:bg-slate-800 transition-all duration-150"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-[#6b6b80] hover:text-red-400 hover:bg-[#1a1a25] transition-all duration-150"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

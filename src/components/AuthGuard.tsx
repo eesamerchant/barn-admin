@@ -5,11 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase';
 import Sidebar from './Sidebar';
 
-export default function AuthGuard({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [loading, setLoading] = useState(true);
@@ -19,10 +15,7 @@ export default function AuthGuard({
     const checkAuth = async () => {
       try {
         const supabase = createClient();
-        const {
-          data: { session },
-        } = await supabase.auth.getSession();
-
+        const { data: { session } } = await supabase.auth.getSession();
         if (session) {
           setAuthenticated(true);
         } else {
@@ -42,8 +35,8 @@ export default function AuthGuard({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-slate-50">
-        <div className="h-8 w-8 rounded-full border-2 border-slate-200 border-t-blue-600 animate-spin" />
+      <div className="flex items-center justify-center min-h-screen bg-[#0a0a0f]">
+        <div className="h-8 w-8 rounded-full border-2 border-[#2a2a3a] border-t-blue-500 animate-spin" />
       </div>
     );
   }
@@ -52,7 +45,7 @@ export default function AuthGuard({
   if (!authenticated) return null;
 
   return (
-    <div className="flex h-screen bg-slate-100">
+    <div className="flex h-screen bg-[#0a0a0f]">
       <Sidebar />
       <main className="flex-1 overflow-y-auto">
         <div className="max-w-6xl mx-auto px-8 py-8">

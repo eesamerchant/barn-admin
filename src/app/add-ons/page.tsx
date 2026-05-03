@@ -170,7 +170,7 @@ export default function AddOnsPage() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-slate-900 mb-8">Add-ons Management</h1>
+      <h1 className="text-4xl font-bold text-white mb-8">Add-ons Management</h1>
 
       <button
         onClick={handleCreate}
@@ -179,8 +179,8 @@ export default function AddOnsPage() {
         + New Add-on
       </button>
 
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-xl font-bold text-slate-900 mb-6">All Add-ons</h2>
+      <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+        <h2 className="text-xl font-bold text-white mb-6">All Add-ons</h2>
 
         {/* Filter Tabs */}
         <div className="flex gap-2 mb-6 flex-wrap">
@@ -189,7 +189,7 @@ export default function AddOnsPage() {
             className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
               filter === 'all'
                 ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                : 'bg-[#12121a] text-[#e4e4ed] hover:bg-gray-200'
             }`}
           >
             All
@@ -199,7 +199,7 @@ export default function AddOnsPage() {
             className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
               filter === 'both'
                 ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                : 'bg-[#12121a] text-[#e4e4ed] hover:bg-gray-200'
             }`}
           >
             Both Sites
@@ -211,7 +211,7 @@ export default function AddOnsPage() {
               className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                 filter === space.id
                   ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-[#12121a] text-[#e4e4ed] hover:bg-gray-200'
               }`}
             >
               {space.name}
@@ -225,30 +225,30 @@ export default function AddOnsPage() {
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
           </div>
         ) : filteredAddOns.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-[#6b6b80]">
             <p>No add-ons to display</p>
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-[#2a2a3a]">
             <table className="w-full">
               <thead>
-                <tr className="bg-gray-100 border-b">
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                <tr className="bg-[#12121a] border-b">
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#e4e4ed]">
                     Name
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#e4e4ed]">
                     Description
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#e4e4ed]">
                     Price
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#e4e4ed]">
                     Site
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#e4e4ed]">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#e4e4ed]">
                     Actions
                   </th>
                 </tr>
@@ -258,16 +258,16 @@ export default function AddOnsPage() {
                   <tr
                     key={addon.id}
                     className={`border-b transition-colors duration-150 ${
-                      idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                      idx % 2 === 0 ? 'bg-[#12121a]' : 'bg-[#0a0a0f]'
                     } hover:bg-blue-50`}
                   >
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 text-sm font-medium text-white">
                       {addon.name}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
+                    <td className="px-6 py-4 text-sm text-[#6b6b80]">
                       {addon.description}
                     </td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 text-sm font-medium text-white">
                       ${addon.price.toFixed(2)}
                     </td>
                     <td className="px-6 py-4 text-sm">
@@ -284,7 +284,7 @@ export default function AddOnsPage() {
                         className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
                           addon.is_active
                             ? 'bg-green-100 text-green-800'
-                            : 'bg-gray-100 text-gray-800'
+                            : 'bg-[#12121a] text-gray-800'
                         }`}
                       >
                         {addon.is_active ? 'Active' : 'Inactive'}
@@ -317,16 +317,16 @@ export default function AddOnsPage() {
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full animate-slide-up">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-slate-900">
+          <div className="bg-[#12121a] rounded-lg shadow-xl max-w-md w-full animate-slide-up">
+            <div className="p-6 border-b border-[#2a2a3a]">
+              <h2 className="text-2xl font-bold text-white">
                 {formMode === 'edit' ? 'Edit Add-on' : 'Create New Add-on'}
               </h2>
             </div>
 
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Name
                 </label>
                 <input
@@ -335,13 +335,13 @@ export default function AddOnsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Description
                 </label>
                 <textarea
@@ -349,13 +349,13 @@ export default function AddOnsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, description: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   rows={3}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Price
                 </label>
                 <input
@@ -365,16 +365,16 @@ export default function AddOnsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, price: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
                   Push to Site
                 </label>
-                <p className="text-xs text-gray-500 mb-2">
+                <p className="text-xs text-[#6b6b80] mb-2">
                   Choose which booking site this add-on will appear on
                 </p>
                 <select
@@ -382,7 +382,7 @@ export default function AddOnsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, space_id: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="both">Both Sites</option>
                   {spaces.map((space) => (
@@ -405,7 +405,7 @@ export default function AddOnsPage() {
                 />
                 <label
                   htmlFor="isActive"
-                  className="ml-2 text-sm font-medium text-gray-700 cursor-pointer"
+                  className="ml-2 text-sm font-medium text-[#e4e4ed] cursor-pointer"
                 >
                   Active
                 </label>
@@ -415,7 +415,7 @@ export default function AddOnsPage() {
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-900 font-medium rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-white font-medium rounded-lg transition-colors"
                 >
                   Cancel
                 </button>

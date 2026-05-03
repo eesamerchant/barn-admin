@@ -110,15 +110,15 @@ export default function PaymentsPage() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-slate-900 mb-8">Payment Verification</h1>
+      <h1 className="text-4xl font-bold text-white mb-8">Payment Verification</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <p className="text-sm font-medium text-gray-600">Pending Payments</p>
+          <p className="text-sm font-medium text-[#6b6b80]">Pending Payments</p>
           <p className="text-3xl font-bold text-blue-600 mt-2">{pendingBookings.length}</p>
         </div>
         <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-          <p className="text-sm font-medium text-gray-600">Total Amount Due</p>
+          <p className="text-sm font-medium text-[#6b6b80]">Total Amount Due</p>
           <p className="text-3xl font-bold text-green-600 mt-2">
             ${pendingBookings
               .reduce((sum, b) => sum + b.total_amount, 0)
@@ -126,7 +126,7 @@ export default function PaymentsPage() {
           </p>
         </div>
         <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
-          <p className="text-sm font-medium text-gray-600">Deposits Due</p>
+          <p className="text-sm font-medium text-[#6b6b80]">Deposits Due</p>
           <p className="text-3xl font-bold text-orange-600 mt-2">
             ${pendingBookings
               .reduce((sum, b) => sum + b.deposit_amount, 0)
@@ -135,32 +135,32 @@ export default function PaymentsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-        <h2 className="text-xl font-bold text-slate-900 mb-4">Pending Payments</h2>
+      <div className="bg-[#12121a] rounded-lg shadow-lg p-6 mb-8">
+        <h2 className="text-xl font-bold text-white mb-4">Pending Payments</h2>
         {loading ? (
           <div className="flex justify-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
           </div>
         ) : pendingBookings.length === 0 ? (
-          <p className="text-gray-500 text-center py-8">No pending payments</p>
+          <p className="text-[#6b6b80] text-center py-8">No pending payments</p>
         ) : (
           <div className="space-y-3">
             {pendingBookings.map((booking) => (
               <div
                 key={booking.id}
-                className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors flex justify-between items-center"
+                className="p-4 border border-[#2a2a3a] rounded-lg hover:bg-[#0a0a0f] transition-colors flex justify-between items-center"
               >
                 <div className="flex-1">
-                  <p className="font-semibold text-slate-900">
+                  <p className="font-semibold text-white">
                     {booking.customer_name}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-[#6b6b80]">
                     {format(new Date(booking.date), 'MMM dd, yyyy')} at {(booking.spaces as any)?.name}
                   </p>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-[#6b6b80] mt-1">
                     E-transfer Ref: {booking.etransfer_reference || 'Not provided'}
                   </p>
-                  <p className="text-sm font-medium text-gray-700 mt-2">
+                  <p className="text-sm font-medium text-[#e4e4ed] mt-2">
                     Total: ${booking.total_amount} | Deposit: ${booking.deposit_amount}
                   </p>
                 </div>
@@ -179,28 +179,28 @@ export default function PaymentsPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-xl font-bold text-slate-900 mb-4">
+      <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+        <h2 className="text-xl font-bold text-white mb-4">
           Recent Verifications
         </h2>
         {verifications.length === 0 ? (
-          <p className="text-gray-500 text-center py-8">No verification records</p>
+          <p className="text-[#6b6b80] text-center py-8">No verification records</p>
         ) : (
           <div className="space-y-2 max-h-[400px] overflow-y-auto">
             {verifications.slice(0, 20).map((verification) => (
               <div
                 key={verification.id}
-                className="p-3 bg-gray-50 border border-gray-200 rounded-lg"
+                className="p-3 bg-[#0a0a0f] border border-[#2a2a3a] rounded-lg"
               >
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-slate-900">
+                    <p className="text-sm font-medium text-white">
                       {verification.reference_number}
                     </p>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-[#6b6b80]">
                       {verification.email_subject}
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-[#6b6b80] mt-1">
                       Amount: ${verification.amount_found}
                     </p>
                   </div>
@@ -222,49 +222,49 @@ export default function PaymentsPage() {
 
       {showDetail && selectedBooking && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+          <div className="bg-[#12121a] rounded-lg shadow-xl max-w-md w-full">
             <div className="p-6 border-b">
-              <h2 className="text-2xl font-bold text-slate-900">Verify Payment</h2>
+              <h2 className="text-2xl font-bold text-white">Verify Payment</h2>
             </div>
 
             <div className="p-6 space-y-4">
               <div>
-                <p className="text-sm font-medium text-gray-600">Customer</p>
+                <p className="text-sm font-medium text-[#6b6b80]">Customer</p>
                 <p className="text-lg font-semibold">
                   {selectedBooking.customer_name}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm font-medium text-gray-600">Email</p>
+                <p className="text-sm font-medium text-[#6b6b80]">Email</p>
                 <p className="text-lg font-semibold">
                   {selectedBooking.customer_email}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm font-medium text-gray-600">Date</p>
+                <p className="text-sm font-medium text-[#6b6b80]">Date</p>
                 <p className="text-lg font-semibold">
                   {format(new Date(selectedBooking.date), 'MMM dd, yyyy')}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Amount</p>
+                <p className="text-sm font-medium text-[#6b6b80]">Total Amount</p>
                 <p className="text-lg font-semibold">
                   ${selectedBooking.total_amount}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm font-medium text-gray-600">Deposit Amount</p>
+                <p className="text-sm font-medium text-[#6b6b80]">Deposit Amount</p>
                 <p className="text-lg font-semibold">
                   ${selectedBooking.deposit_amount}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-[#6b6b80]">
                   E-transfer Reference
                 </p>
                 <p className="text-lg font-semibold">
@@ -272,7 +272,7 @@ export default function PaymentsPage() {
                 </p>
               </div>
 
-              <p className="text-sm text-gray-600 bg-yellow-50 border border-yellow-200 rounded p-3">
+              <p className="text-sm text-[#6b6b80] bg-yellow-50 border border-yellow-200 rounded p-3">
                 Verify that the e-transfer was received with the matching reference number.
               </p>
             </div>
@@ -283,7 +283,7 @@ export default function PaymentsPage() {
                   setShowDetail(false);
                   setSelectedBooking(null);
                 }}
-                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-900 font-medium rounded-lg transition-colors"
+                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-white font-medium rounded-lg transition-colors"
               >
                 Cancel
               </button>

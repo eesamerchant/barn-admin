@@ -157,19 +157,19 @@ export default function BookingsPage() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-slate-900 mb-8">Bookings Management</h1>
+      <h1 className="text-4xl font-bold text-white mb-8">Bookings Management</h1>
 
-      <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-        <h2 className="text-xl font-bold text-slate-900 mb-4">Filters</h2>
+      <div className="bg-[#12121a] rounded-lg shadow-lg p-6 mb-8">
+        <h2 className="text-xl font-bold text-white mb-4">Filters</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
               Space
             </label>
             <select
               value={selectedSpace}
               onChange={(e) => setSelectedSpace(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="all">All Spaces</option>
               {spaces.map((space) => (
@@ -181,13 +181,13 @@ export default function BookingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
               Status
             </label>
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="all">All Statuses</option>
               <option value="pending">Pending</option>
@@ -198,33 +198,33 @@ export default function BookingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
               From Date
             </label>
             <input
               type="date"
               value={dateFrom}
               onChange={(e) => setDateFrom(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
               To Date
             </label>
             <input
               type="date"
               value={dateTo}
               onChange={(e) => setDateTo(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-xl font-bold text-slate-900 mb-4">
+      <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
+        <h2 className="text-xl font-bold text-white mb-4">
           Bookings ({filteredBookings.length})
         </h2>
         <DataTable
@@ -238,15 +238,15 @@ export default function BookingsPage() {
             { key: 'payment', label: 'Payment' },
           ]}
           data={tableData}
-          loading={loading}
+         
         />
       </div>
 
       {showDetail && selectedBooking && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-[#12121a] rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b">
-              <h2 className="text-2xl font-bold text-slate-900">
+              <h2 className="text-2xl font-bold text-white">
                 Booking Details
               </h2>
             </div>
@@ -254,61 +254,61 @@ export default function BookingsPage() {
             <div className="p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Date</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Date</p>
                   <p className="text-lg font-semibold">
                     {format(new Date(selectedBooking.date), 'MMM dd, yyyy')}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Time</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Time</p>
                   <p className="text-lg font-semibold">
                     {selectedBooking.start_hour}:00 - {selectedBooking.end_hour}:00
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Customer</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Customer</p>
                   <p className="text-lg font-semibold">
                     {selectedBooking.customer_name}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Email</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Email</p>
                   <p className="text-lg font-semibold">
                     {selectedBooking.customer_email}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Phone</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Phone</p>
                   <p className="text-lg font-semibold">
                     {selectedBooking.customer_phone}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Space</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Space</p>
                   <p className="text-lg font-semibold">
                     {selectedBooking.spaces?.name}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Amount</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Total Amount</p>
                   <p className="text-lg font-semibold">
                     ${selectedBooking.total_amount}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Deposit</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Deposit</p>
                   <p className="text-lg font-semibold">
                     ${selectedBooking.deposit_amount}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Status</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Status</p>
                   <p className="text-lg font-semibold capitalize">
                     {selectedBooking.status}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Payment</p>
+                  <p className="text-sm font-medium text-[#6b6b80]">Payment</p>
                   <p className="text-lg font-semibold">
                     {selectedBooking.payment_verified ? 'Verified' : 'Not Verified'}
                   </p>
@@ -323,7 +323,7 @@ export default function BookingsPage() {
                       handleStatusChange(selectedBooking.id, e.target.value)
                     }
                     disabled={updating}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+                    className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-[#12121a]"
                   >
                     <option value="pending">Pending</option>
                     <option value="confirmed">Confirmed</option>
@@ -350,7 +350,7 @@ export default function BookingsPage() {
                   setShowDetail(false);
                   setSelectedBooking(null);
                 }}
-                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-900 font-medium rounded-lg transition-colors"
+                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-white font-medium rounded-lg transition-colors"
               >
                 Close
               </button>
