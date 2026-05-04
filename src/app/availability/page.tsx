@@ -26,6 +26,7 @@ export default function AvailabilityPage() {
   const [bulkDays, setBulkDays] = useState(30);
   const [bulkStartHour, setBulkStartHour] = useState(8);
   const [bulkEndHour, setBulkEndHour] = useState(22);
+  const [bulkDayFilter, setBulkDayFilter] = useState<number[]>([0, 1, 2, 3, 4, 5, 6]); // 0=Sun..6=Sat
 
   useEffect(() => {
     fetchAvailabilities();
@@ -121,8 +122,24 @@ export default function AvailabilityPage() {
     }
   };
 
+  const toggleBulkDay = (day: number) => {
+    setBulkDayFilter((prev) =>
+      prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
+    );
+  };
+
+  const setBulkPreset = (preset: 'all' | 'weekdays' | 'weekends') => {
+    if (preset === 'all') setBulkDayFilter([0, 1, 2, 3, 4, 5, 6]);
+    else if (preset === 'weekdays') setBulkDayFilter([1, 2, 3, 4, 5]);
+    else if (preset === 'weekends') setBulkDayFilter([0, 6]);
+  };
+
   const handleBulkSet = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (bulkDayFilter.length === 0) {
+      alert('Please select at least one day of the week');
+      return;
+    }
     setSaving(true);
 
     try {
@@ -132,8 +149,10 @@ export default function AvailabilityPage() {
 
       for (let i = 0; i < bulkDays; i++) {
         const date = addDays(today, i);
-        const dateStr = format(date, 'yyyy-MM-dd');
+        const dayOfWeek = date.getDay(); // 0=Sun..6=Sat
+        if (!bulkDayFilter.includes(dayOfWeek)) continue;
 
+        const dateStr = format(date, 'yyyy-MM-dd');
         records.push({
           date: dateStr,
           start_hour: bulkStartHour,
@@ -141,6 +160,12 @@ export default function AvailabilityPage() {
           is_available: true,
           note: null,
         });
+      }
+
+      if (records.length === 0) {
+        alert('No matching days found in the selected range');
+        setSaving(false);
+        return;
       }
 
       // Upsert records
@@ -151,7 +176,7 @@ export default function AvailabilityPage() {
       if (error) throw error;
 
       await fetchAvailabilities();
-      alert(`Bulk availability set for ${bulkDays} days`);
+      alert(`Bulk availability set for ${records.length} days`);
     } catch (error) {
       console.error('Error bulk setting availability:', error);
       alert('Failed to bulk set availability');
@@ -184,29 +209,29 @@ export default function AvailabilityPage() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-white mb-8">Availability Management</h1>
+      <h1 className="text-4xl font-bold text-slate-900 mb-8">Availability Management</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Set Availability Form */}
         <div className="lg:col-span-1">
-          <div className="bg-[#12121a] rounded-lg shadow-lg p-6 mb-8">
-            <h2 className="text-xl font-bold text-white mb-4">Set Availability</h2>
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 className="text-xl font-bold text-slate-900 mb-4">Set Availability</h2>
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Date
                 </label>
                 <input
                   type="date"
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Start Hour (0-23)
                 </label>
                 <input
@@ -215,12 +240,12 @@ export default function AvailabilityPage() {
                   max="23"
                   value={startHour}
                   onChange={(e) => setStartHour(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   End Hour (0-23)
                 </label>
                 <input
@@ -229,7 +254,7 @@ export default function AvailabilityPage() {
                   max="23"
                   value={endHour}
                   onChange={(e) => setEndHour(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -243,21 +268,21 @@ export default function AvailabilityPage() {
                 />
                 <label
                   htmlFor="isAvailable"
-                  className="ml-2 text-sm font-medium text-[#e4e4ed]"
+                  className="ml-2 text-sm font-medium text-gray-700"
                 >
                   Available
                 </label>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Note (Optional)
                 </label>
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="e.g., Maintenance scheduled"
-                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   rows={3}
                 />
               </div>
@@ -273,11 +298,11 @@ export default function AvailabilityPage() {
           </div>
 
           {/* Bulk Set Form */}
-          <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-bold text-white mb-4">Bulk Set</h2>
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-bold text-slate-900 mb-4">Bulk Set</h2>
             <form onSubmit={handleBulkSet} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Days from Today
                 </label>
                 <input
@@ -286,12 +311,73 @@ export default function AvailabilityPage() {
                   max="365"
                   value={bulkDays}
                   onChange={(e) => setBulkDays(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Days of Week
+                </label>
+                <div className="flex flex-wrap gap-1.5 mb-2">
+                  {(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as const).map(
+                    (label, idx) => (
+                      <button
+                        key={label}
+                        type="button"
+                        onClick={() => toggleBulkDay(idx)}
+                        className={`px-2.5 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
+                          bulkDayFilter.includes(idx)
+                            ? 'bg-blue-600 text-white border-blue-600'
+                            : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    )
+                  )}
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setBulkPreset('all')}
+                    className={`flex-1 px-2 py-1 text-xs font-medium rounded-md border transition-colors ${
+                      bulkDayFilter.length === 7
+                        ? 'bg-blue-50 text-blue-700 border-blue-300'
+                        : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'
+                    }`}
+                  >
+                    All Days
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setBulkPreset('weekdays')}
+                    className={`flex-1 px-2 py-1 text-xs font-medium rounded-md border transition-colors ${
+                      bulkDayFilter.length === 5 &&
+                      [1, 2, 3, 4, 5].every((d) => bulkDayFilter.includes(d))
+                        ? 'bg-blue-50 text-blue-700 border-blue-300'
+                        : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'
+                    }`}
+                  >
+                    Weekdays
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setBulkPreset('weekends')}
+                    className={`flex-1 px-2 py-1 text-xs font-medium rounded-md border transition-colors ${
+                      bulkDayFilter.length === 2 &&
+                      [0, 6].every((d) => bulkDayFilter.includes(d))
+                        ? 'bg-blue-50 text-blue-700 border-blue-300'
+                        : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'
+                    }`}
+                  >
+                    Weekends
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Start Hour
                 </label>
                 <input
@@ -300,12 +386,12 @@ export default function AvailabilityPage() {
                   max="23"
                   value={bulkStartHour}
                   onChange={(e) => setBulkStartHour(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#e4e4ed] mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   End Hour
                 </label>
                 <input
@@ -314,7 +400,7 @@ export default function AvailabilityPage() {
                   max="23"
                   value={bulkEndHour}
                   onChange={(e) => setBulkEndHour(parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-[#2a2a3a] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -331,8 +417,8 @@ export default function AvailabilityPage() {
 
         {/* Availability List */}
         <div className="lg:col-span-2">
-          <div className="bg-[#12121a] rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-bold text-white mb-4">
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-bold text-slate-900 mb-4">
               All Availability Records
             </h2>
             {loading ? (
@@ -340,7 +426,7 @@ export default function AvailabilityPage() {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
               </div>
             ) : availabilities.length === 0 ? (
-              <p className="text-[#6b6b80] text-center py-8">No availability records</p>
+              <p className="text-gray-500 text-center py-8">No availability records</p>
             ) : (
               <div className="space-y-2 max-h-[600px] overflow-y-auto">
                 {availabilities.map((record) => (
@@ -349,7 +435,7 @@ export default function AvailabilityPage() {
                     className={`p-4 border rounded-lg cursor-pointer transition-colors ${
                       selectedRecord?.id === record.id
                         ? 'bg-blue-50 border-blue-300'
-                        : 'bg-[#0a0a0f] border-[#2a2a3a] hover:bg-[#12121a]'
+                        : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
                     }`}
                   >
                     <div
@@ -357,14 +443,14 @@ export default function AvailabilityPage() {
                       className="flex justify-between items-start mb-2"
                     >
                       <div>
-                        <p className="font-semibold text-white">
+                        <p className="font-semibold text-slate-900">
                           {format(new Date(record.date), 'EEE, MMM dd, yyyy')}
                         </p>
-                        <p className="text-sm text-[#6b6b80]">
+                        <p className="text-sm text-gray-600">
                           {record.start_hour}:00 - {record.end_hour}:00
                         </p>
                         {record.note && (
-                          <p className="text-sm text-[#6b6b80] mt-1">{record.note}</p>
+                          <p className="text-sm text-gray-500 mt-1">{record.note}</p>
                         )}
                       </div>
                       <div className="flex items-center gap-2">
